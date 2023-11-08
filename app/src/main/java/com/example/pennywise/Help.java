@@ -3,24 +3,15 @@ package com.example.pennywise;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
-import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-public class MainActivity extends AppCompatActivity {
-
-    private TextView textViewCurrentBudget;
-    private ListView listViewLastChanges;
-    private BottomNavigationView bottomNavigationView;
-
+public class Help extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.help);
 
         final Button buttonHome = (Button) findViewById(R.id.navigation_home);
         buttonHome.setOnClickListener(new View.OnClickListener() {
@@ -69,21 +60,5 @@ public class MainActivity extends AppCompatActivity {
     private void buttonHelpActivity() {
         Intent intent = new Intent(this, Help.class);
         startActivity(intent);
-    }
-
-    private void updateCurrentBudget(double budget) {
-        // Formatieren Sie den Betrag und setzen Sie den Text
-        String budgetText = String.format("Aktuelles Budget: %.2f", budget);
-        textViewCurrentBudget.setText(budgetText);
-    }
-
-    private String[] getLastChanges() {
-        // Dies würde die letzten Änderungen von Ihrer Datenquelle holen
-        // Hier ist ein Platzhalter-Beispiel
-        return new String[] {
-                "Stromrechnung - 300",
-                "Budgeterhöhung - 1000",
-                "Gym-Abonnement - 54"
-        };
     }
 }
