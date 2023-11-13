@@ -1,15 +1,19 @@
 <resources>
     <string name="app_name">PennyWise</string>
-    <string name="current_budget">Aktuelles Budget</string>
-    <string name="add_expense">Ausgabe hinzufügen</string>
-    <string name="expense_amount">Ausgabenbetrag</string>
-    <string name="logo_description">Logo Beschreibung</string>
+    <string name="current_budget">hi</string>
+    <string name="add_expense">hi</string>
+    <string name="expense_amount">hi</string>
+    <string name="logo_description">hi</string>
     <string name="willkommen_text">Willkommen bei PennyWise! Uns ist es wichtig, dass Sie einen klaren und einfachen Überblick über Ihre persönlichen Finanzen haben.</string>
-    <string name="aktueller_betrag">Aktuelles Budget</string>
+    <string name="aktueller_betrag">test</string>
     <string name="letzte_aenderungen">Letzte Änderungen</string>
     <string name="title_home">Home</string>
     <string name="title_budget">Budgetplan</string>
-    <string name="title_analysis">Analyse</string>
-    <string name="title_help">Hilfe</string>
-    <string name="analyse">Analyse</string>
+    <string name="title_analysis">Analysis</string>
+    <string name="title_help">Help</string>
+    <string name="analyse">analyse</string>
+    <string name="Kategorie">Wähle eine Kategorie</string>
+    <string name="Art">Wähle eine Art</string>
+    <string name="budget">Budgetlimit eingeben</string>
+    <string name="betrag">Betrag</string>
 </resources>

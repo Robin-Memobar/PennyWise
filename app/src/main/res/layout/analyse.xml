@@ -68,4 +68,14 @@
             android:text="@string/title_help" />
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="102dp"
+        android:layout_height="47dp"
+        android:text="Analyse"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="26dp"
+        tools:ignore="MissingConstraints" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

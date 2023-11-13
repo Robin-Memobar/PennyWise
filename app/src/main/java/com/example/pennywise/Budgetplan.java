@@ -3,9 +3,11 @@ package com.example.pennywise;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import android.os.Bundle;
@@ -17,7 +19,7 @@ public class Budgetplan extends AppCompatActivity {
     private ListView listViewLastChanges;
     private BottomNavigationView bottomNavigationView;
 
-    private EditText editTextBudgetLimit, editTextAusgabenEssen, editTextAusgabenHaushalt, editTextAusgabenFreizeit, editTextAusgabenSonstiges;
+    private EditText editTextBudgetLimit;
     private Button saveBudgetButton;
 
     @Override
@@ -56,11 +58,43 @@ public class Budgetplan extends AppCompatActivity {
 
         // Initialisierung der neuen EditText-Felder und des Save Buttons
         editTextBudgetLimit = findViewById(R.id.editTextBudgetLimit);
-        editTextAusgabenEssen = findViewById(R.id.editTextAusgabenEssen);
-        editTextAusgabenHaushalt = findViewById(R.id.editTextAusgabenHaushalt);
-        editTextAusgabenFreizeit = findViewById(R.id.editTextAusgabenFreizeit);
-        editTextAusgabenSonstiges = findViewById(R.id.editTextAusgabenSonstiges);
+        editTextBudgetLimit.setText(""); // Setze einen leeren String
+
         saveBudgetButton = findViewById(R.id.saveBudgetButton);
+
+        // Spinner initialisieren
+        Spinner artSpinner = findViewById(R.id.artSpinner);
+
+        // Auswahlmöglichkeiten erstellen
+        String[] categories = {"Wähle eine Kategorie","Haushalt", "Freizeit", "Essen", "Sonstiges"};
+
+        // ArrayAdapter erstellen und mit den Auswahlmöglichkeiten verknüpfen
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categories);
+
+        // Dropdown-Layout für den Spinner festlegen
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // ArrayAdapter mit dem Spinner verbinden
+        artSpinner.setAdapter(adapter);
+
+        // Initialisierung der neuen EditText-Felder und des Save Buttons
+        editTextBudgetLimit = findViewById(R.id.editTextBudgetLimit);
+        saveBudgetButton = findViewById(R.id.saveBudgetButton);
+
+        // Spinner initialisieren
+        Spinner categorySpinner = findViewById(R.id.categorySpinner);
+
+        // Auswahlmöglichkeiten erstellen
+        String[] arten = {"Wähle eine Art", "Budget Erhöhung", "Ausgabe"};
+
+        // ArrayAdapter erstellen und mit den Auswahlmöglichkeiten verknüpfen
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, arten);
+
+        // Dropdown-Layout für den Spinner festlegen
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // ArrayAdapter mit dem Spinner verbinden
+        categorySpinner.setAdapter(adapter1);
 
         saveBudgetButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,24 +110,13 @@ public class Budgetplan extends AppCompatActivity {
     private void saveBudgetData() {
         SharedPreferences sharedPreferences = getSharedPreferences("BudgetPrefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-
         editor.putInt("BudgetLimit", Integer.parseInt(editTextBudgetLimit.getText().toString()));
-        editor.putInt("AusgabenEssen", Integer.parseInt(editTextAusgabenEssen.getText().toString()));
-        editor.putInt("AusgabenHaushalt", Integer.parseInt(editTextAusgabenHaushalt.getText().toString()));
-        editor.putInt("AusgabenFreizeit", Integer.parseInt(editTextAusgabenFreizeit.getText().toString()));
-        editor.putInt("AusgabenSonstiges", Integer.parseInt(editTextAusgabenSonstiges.getText().toString()));
-
         editor.apply();
     }
 
     private void loadBudgetData() {
         SharedPreferences sharedPreferences = getSharedPreferences("BudgetPrefs", MODE_PRIVATE);
-
         editTextBudgetLimit.setText(String.valueOf(sharedPreferences.getInt("BudgetLimit", 0)));
-        editTextAusgabenEssen.setText(String.valueOf(sharedPreferences.getInt("AusgabenEssen", 0)));
-        editTextAusgabenHaushalt.setText(String.valueOf(sharedPreferences.getInt("AusgabenHaushalt", 0)));
-        editTextAusgabenFreizeit.setText(String.valueOf(sharedPreferences.getInt("AusgabenFreizeit", 0)));
-        editTextAusgabenSonstiges.setText(String.valueOf(sharedPreferences.getInt("AusgabenSonstiges", 0)));
     }
 
     // Ihre bestehenden Navigationsmethoden
