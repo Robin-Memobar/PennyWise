@@ -10,57 +10,67 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="102dp"
-        android:layout_height="47dp"
-        android:text="Help"
+        android:layout_width="109dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="576dp"
+        android:text="@string/title_help"
         android:textSize="24sp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="26dp" />
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_height="50dp"
+        android:gravity="bottom"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <Button
             android:id="@+id/navigation_home"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:icon="@drawable/baseline_home_24"
-            android:text="@string/title_home" />
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/baseline_home_24"
+            android:gravity="center"
+            android:text="@string/title_home"
+            android:textColor="@color/black" />
 
         <Button
             android:id="@+id/navigation_budgetplan"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:icon="@drawable/baseline_add_24"
-            android:text="@string/title_budget" />
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/baseline_add_24"
+            android:gravity="center"
+            android:text="@string/title_budget"
+            android:textColor="@color/black" />
 
         <Button
             android:id="@+id/navigation_analysis"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:icon="@drawable/baseline_analytics_24"
-            android:text="@string/title_analysis" />
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/baseline_analytics_24"
+            android:gravity="center"
+            android:text="@string/title_analysis"
+            android:textColor="@android:color/white" />
 
         <Button
             android:id="@+id/navigation_help"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:icon="@drawable/baseline_question_mark_24"
-            android:text="@string/title_help" />
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/baseline_question_mark_24"
+            android:gravity="center"
+            android:text="@string/title_help"
+            android:textColor="@android:color/white" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
