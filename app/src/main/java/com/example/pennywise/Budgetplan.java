@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -23,6 +24,7 @@ import androidx.core.content.ContextCompat;
 
 public class Budgetplan extends AppCompatActivity {
 
+
     private Button buttonStartCamera;
 
     private TextView textViewCurrentBudget;
@@ -32,8 +34,13 @@ public class Budgetplan extends AppCompatActivity {
     private EditText editTextBudgetLimit;
     private Button saveBudgetButton;
 
+    private ImageView imageViewCamera;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        imageViewCamera = findViewById(R.id.imageView);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.budgetplan);
 
@@ -49,6 +56,15 @@ public class Budgetplan extends AppCompatActivity {
         buttonBudgetplan.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 buttonBudgetplanActivity();
+                requestCameraPermission();
+
+            }
+        });
+
+        imageViewCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requestCameraPermission();
             }
         });
 
