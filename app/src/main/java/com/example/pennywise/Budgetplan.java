@@ -24,9 +24,6 @@ import androidx.core.content.ContextCompat;
 
 public class Budgetplan extends AppCompatActivity {
 
-
-    private Button buttonStartCamera;
-
     private TextView textViewCurrentBudget;
     private ListView listViewLastChanges;
     private BottomNavigationView bottomNavigationView;
@@ -38,11 +35,17 @@ public class Budgetplan extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        imageViewCamera = findViewById(R.id.imageView);
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.budgetplan);
+
+        imageViewCamera = findViewById(R.id.imageView);
+        imageViewCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requestCameraPermission();
+            }
+        });
+
 
         // Ihre bestehenden Button-Initialisierungen
         final Button buttonHome = findViewById(R.id.navigation_home);
@@ -56,15 +59,6 @@ public class Budgetplan extends AppCompatActivity {
         buttonBudgetplan.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 buttonBudgetplanActivity();
-                requestCameraPermission();
-
-            }
-        });
-
-        imageViewCamera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                requestCameraPermission();
             }
         });
 
@@ -82,46 +76,9 @@ public class Budgetplan extends AppCompatActivity {
             }
         });
 
-        // Initialisierung der neuen EditText-Felder und des Save Buttons
-        editTextBudgetLimit = findViewById(R.id.editTextBudgetLimit);
-        editTextBudgetLimit.setText(""); // Setze einen leeren String
-
-        saveBudgetButton = findViewById(R.id.saveBudgetButton);
-
-        // Spinner initialisieren
-        Spinner artSpinner = findViewById(R.id.artSpinner);
-
-        // Auswahlmöglichkeiten erstellen
-        String[] categories = {"Wähle eine Kategorie","Haushalt", "Freizeit", "Essen", "Sonstiges"};
-
-        // ArrayAdapter erstellen und mit den Auswahlmöglichkeiten verknüpfen
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categories);
-
-        // Dropdown-Layout für den Spinner festlegen
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // ArrayAdapter mit dem Spinner verbinden
-        artSpinner.setAdapter(adapter);
-
-        // Initialisierung der neuen EditText-Felder und des Save Buttons
+        // Initialisierung der EditText-Felder und des Save Buttons
         editTextBudgetLimit = findViewById(R.id.editTextBudgetLimit);
         saveBudgetButton = findViewById(R.id.saveBudgetButton);
-
-        // Spinner initialisieren
-        Spinner categorySpinner = findViewById(R.id.categorySpinner);
-
-        // Auswahlmöglichkeiten erstellen
-        String[] arten = {"Wähle eine Art", "Budget Erhöhung", "Ausgabe"};
-
-        // ArrayAdapter erstellen und mit den Auswahlmöglichkeiten verknüpfen
-        ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, arten);
-
-        // Dropdown-Layout für den Spinner festlegen
-        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // ArrayAdapter mit dem Spinner verbinden
-        categorySpinner.setAdapter(adapter1);
-
         saveBudgetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,17 +86,27 @@ public class Budgetplan extends AppCompatActivity {
             }
         });
 
+        // Spinner initialisieren
+        Spinner artSpinner = findViewById(R.id.artSpinner);
+        Spinner categorySpinner = findViewById(R.id.categorySpinner);
+        initializeSpinners(artSpinner, categorySpinner);
+
         // Laden der gespeicherten Daten beim Start
         loadBudgetData();
-        // Initialisierung des Kamera-Buttons
-        buttonStartCamera = findViewById(R.id.button_start_camera);
-        buttonStartCamera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                requestCameraPermission();
-            }
-        });
+    }
 
+    private void initializeSpinners(Spinner artSpinner, Spinner categorySpinner) {
+        // Auswahlmöglichkeiten und Adapter für artSpinner
+        String[] categories = {"Wähle eine Kategorie", "Haushalt", "Freizeit", "Essen", "Sonstiges"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categories);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        artSpinner.setAdapter(adapter);
+
+        // Auswahlmöglichkeiten und Adapter für categorySpinner
+        String[] arten = {"Wähle eine Art", "Budget Erhöhung", "Ausgabe"};
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, arten);
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        categorySpinner.setAdapter(adapter1);
     }
 
     private void requestCameraPermission() {
@@ -153,7 +120,6 @@ public class Budgetplan extends AppCompatActivity {
     private static final int REQUEST_CAMERA_PERMISSION = 101;
     private static final int REQUEST_IMAGE_CAPTURE = 102;
 
-    // Kamera-Intent starten
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
@@ -183,7 +149,6 @@ public class Budgetplan extends AppCompatActivity {
         }
     }
 
-
     private void saveBudgetData() {
         SharedPreferences sharedPreferences = getSharedPreferences("BudgetPrefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -195,8 +160,6 @@ public class Budgetplan extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("BudgetPrefs", MODE_PRIVATE);
         editTextBudgetLimit.setText(String.valueOf(sharedPreferences.getInt("BudgetLimit", 0)));
     }
-
-
 
     // Ihre bestehenden Navigationsmethoden
     private void buttonHomeClicked() {
