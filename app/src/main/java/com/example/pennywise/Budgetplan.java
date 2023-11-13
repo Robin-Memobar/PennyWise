@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -13,7 +14,16 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.mlkit.vision.common.InputImage;
+import com.google.mlkit.vision.text.TextRecognition;
+import com.google.mlkit.vision.text.TextRecognizer;
+import com.google.mlkit.vision.text.latin.TextRecognizerOptions;
+
 import android.os.Bundle;
 import android.Manifest;
 
@@ -21,6 +31,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
+import org.w3c.dom.Text;
 
 public class Budgetplan extends AppCompatActivity {
 
@@ -38,10 +50,12 @@ public class Budgetplan extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.budgetplan);
 
+
         imageViewCamera = findViewById(R.id.imageView);
         imageViewCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("Camera", "request");
                 requestCameraPermission();
             }
         });
@@ -113,6 +127,7 @@ public class Budgetplan extends AppCompatActivity {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
         } else {
+            Log.d("Camera", "check");
             dispatchTakePictureIntent();
         }
     }
@@ -148,6 +163,8 @@ public class Budgetplan extends AppCompatActivity {
             // Verwenden Sie das Bild hier
         }
     }
+
+
 
     private void saveBudgetData() {
         SharedPreferences sharedPreferences = getSharedPreferences("BudgetPrefs", MODE_PRIVATE);

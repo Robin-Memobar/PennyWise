@@ -146,17 +146,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="140dp"
         android:layout_marginBottom="12dp"
-        android:text="Mit Kamera scannen"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/button_start_camera"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Kamera starten"
-        tools:layout_editor_absoluteX="132dp"
-        tools:layout_editor_absoluteY="455dp"
-        tools:ignore="MissingConstraints" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
