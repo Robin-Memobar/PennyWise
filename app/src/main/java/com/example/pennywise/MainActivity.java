@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         listViewLastChanges = findViewById(R.id.listViewLastChanges);
-textViewCurrentBudget = findViewById(R.id.textViewCurrentBudget);
+    textViewCurrentBudget = findViewById(R.id.textViewCurrentBudget);
         final Button buttonHome = (Button) findViewById(R.id.navigation_home);
         buttonHome.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

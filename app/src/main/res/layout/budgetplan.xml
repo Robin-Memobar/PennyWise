@@ -113,6 +113,13 @@
             android:text="@string/title_analysis" />
 
         <Button
+            android:id="@+id/button_start_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kamera starten"/>
+
+
+        <Button
             android:id="@+id/navigation_help"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
