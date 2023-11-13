@@ -4,9 +4,9 @@
     <string name="add_expense">hi</string>
     <string name="expense_amount">hi</string>
     <string name="logo_description">hi</string>
-    <string name="willkommen_text">Willkommen zu PennyWise!</string>
+    <string name="willkommen_text">Willkommen bei PennyWise! Uns ist es wichtig, dass Sie einen klaren und einfachen Überblick über Ihre persönlichen Finanzen haben.</string>
     <string name="aktueller_betrag">test</string>
-    <string name="letzte_aenderungen">test</string>
+    <string name="letzte_aenderungen">Letzte Änderungen</string>
     <string name="title_home">Home</string>
     <string name="title_budget">Budgetplan</string>
     <string name="title_analysis">Analysis</string>

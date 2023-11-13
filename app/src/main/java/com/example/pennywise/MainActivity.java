@@ -72,14 +72,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateCurrentBudget(double budget) {
-        // Formatieren Sie den Betrag und setzen Sie den Text
         String budgetText = String.format("Aktuelles Budget: %.2f", budget);
         textViewCurrentBudget.setText(budgetText);
     }
 
     private String[] getLastChanges() {
-        // Dies würde die letzten Änderungen von Ihrer Datenquelle holen
-        // Hier ist ein Platzhalter-Beispiel
+
         return new String[] {
                 "Stromrechnung - 300",
                 "Budgeterhöhung - 1000",

@@ -11,13 +11,73 @@
         android:id="@+id/textViewCurrentBudget"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="budgetplan"
-    android:textColor="@android:color/white"
-    android:textSize="24sp"
-    android:padding="16dp"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"/>
+        android:text="Aktuelles Budget"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:padding="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <EditText
+        android:id="@+id/editTextBudgetLimit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Budgetlimit eingeben"
+        app:layout_constraintTop_toBottomOf="@id/textViewCurrentBudget"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
+
+    <EditText
+        android:id="@+id/editTextAusgabenEssen"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Ausgaben für Essen"
+        app:layout_constraintTop_toBottomOf="@id/editTextBudgetLimit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
+
+    <EditText
+        android:id="@+id/editTextAusgabenHaushalt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Ausgaben für Haushalt"
+        app:layout_constraintTop_toBottomOf="@id/editTextAusgabenEssen"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
+
+    <EditText
+        android:id="@+id/editTextAusgabenFreizeit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Ausgaben für Freizeit"
+        app:layout_constraintTop_toBottomOf="@id/editTextAusgabenHaushalt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
+
+    <EditText
+        android:id="@+id/editTextAusgabenSonstiges"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Ausgaben für Sonstiges"
+        app:layout_constraintTop_toBottomOf="@id/editTextAusgabenFreizeit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
+
+    <Button
+        android:id="@+id/saveBudgetButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Budget speichern"
+        app:layout_constraintTop_toBottomOf="@id/editTextAusgabenSonstiges"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
