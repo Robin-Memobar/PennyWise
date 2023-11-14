@@ -9,20 +9,22 @@
     <!-- Aktuelles Budget TextView -->
 
     <TextView
-        android:id="@+id/textView3"
-        android:layout_width="109dp"
-        android:layout_height="48dp"
+        android:id="@+id/textView36"
+        android:layout_width="118dp"
+        android:layout_height="52dp"
         android:layout_marginStart="28dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="274dp"
         android:layout_marginBottom="576dp"
         android:text="@string/title_help"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:gravity="bottom"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -31,46 +33,161 @@
         <Button
             android:id="@+id/navigation_home"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:background="@android:color/transparent"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
             android:drawableTop="@drawable/baseline_home_24"
             android:gravity="center"
             android:text="@string/title_home"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:onClick="onButtonClick"/>
 
         <Button
             android:id="@+id/navigation_budgetplan"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:background="@android:color/transparent"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
             android:drawableTop="@drawable/baseline_add_24"
-            android:gravity="center"
+            android:gravity="bottom"
             android:text="@string/title_budget"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:onClick="onButtonClick" />
 
         <Button
             android:id="@+id/navigation_analysis"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:background="@android:color/transparent"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
             android:drawableTop="@drawable/baseline_analytics_24"
-            android:gravity="center"
+            android:gravity="bottom|center"
             android:text="@string/title_analysis"
-            android:textColor="@android:color/white" />
+            android:textColor="@color/black"
+            android:onClick="onButtonClick" />
 
         <Button
             android:id="@+id/navigation_help"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:background="@android:color/transparent"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
             android:drawableTop="@drawable/baseline_question_mark_24"
             android:gravity="center"
             android:text="@string/title_help"
-            android:textColor="@android:color/white" />
+            android:textColor="@color/black"
+            android:onClick="onButtonClick" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="154dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
+        android:autoText="false"
+        android:text="Hilfe und Frageseite"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView36" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="24dp"
+        android:text="Wie erstelle ich ein Budget?"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="24dp"
+        android:text="Gibt es eine Übersicht über alle meine Budgets?"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="24dp"
+        android:text="Kann ich ins Minus gehen?"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine2" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="16dp"
+        android:text="Wie benutze ich die Kamera?"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine3" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="34dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
+
+    <EditText
+        android:id="@+id/editTextTextMultiLine"
+        android:layout_width="317dp"
+        android:layout_height="87dp"
+        android:layout_marginStart="47dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="none"
+        android:text="Gehen Sie auf das Plus unten im Menu und anschliessend gelangen Sie auf der Seite wo man ein Budget in verschiedenen Kategorien erstellen, erhöhen und minimieren kann."
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <EditText
+        android:id="@+id/editTextTextMultiLine2"
+        android:layout_width="317dp"
+        android:layout_height="87dp"
+        android:layout_marginStart="47dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="none"
+        android:text="Ja gibt es, wenn Sie auf das Dashboard (Analyse) - Symbol klicken, kommen Sie auf die Übersicht all Ihrer Kategorien. So können Sie jederzeit Ihre finanzielle Lage im Auge behalten."
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <EditText
+        android:id="@+id/editTextTextMultiLine3"
+        android:layout_width="317dp"
+        android:layout_height="87dp"
+        android:layout_marginStart="47dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="none"
+        android:text="Ja können Sie, aber es wird Ihnen frühzeitig mitgeteilt wenn es knapp wird."
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <EditText
+        android:id="@+id/editTextTextMultiLine4"
+        android:layout_width="317dp"
+        android:layout_height="87dp"
+        android:layout_marginStart="47dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="none"
+        android:text="Die Kamera steht Ihnen bei dem Erstellen des Budgets zur verfügung. Sie müssen einfach auf das Kamera Icon klicken und den Betrag ein scannen."
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,7 @@
 package com.example.pennywise;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -26,34 +28,33 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         listViewLastChanges = findViewById(R.id.listViewLastChanges);
     textViewCurrentBudget = findViewById(R.id.textViewCurrentBudget);
-        final Button buttonHome = (Button) findViewById(R.id.navigation_home);
+        final Button buttonHome = findViewById(R.id.navigation_home);
         buttonHome.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                buttonHomeClicked();
+                buttonHomeClicked(v);
             }
         });
 
-        final Button buttonBudgetplan = (Button) findViewById(R.id.navigation_budgetplan);
+        final Button buttonBudgetplan = findViewById(R.id.navigation_budgetplan);
         buttonBudgetplan.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                buttonBudgetplanActivity();
+                buttonBudgetplanActivity(v);
             }
         });
 
-        final Button buttonAnalysis = (Button) findViewById(R.id.navigation_analysis);
+        final Button buttonAnalysis = findViewById(R.id.navigation_analysis);
         buttonAnalysis.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                buttonAnalyseActivity();
+                buttonAnalyseActivity(v);
             }
         });
 
-        final Button buttonHelp = (Button) findViewById(R.id.navigation_help);
+        final Button buttonHelp = findViewById(R.id.navigation_help);
         buttonHelp.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                buttonHelpActivity();
+                buttonHelpActivity(v);
             }
         });
         updateCurrentBudget();
@@ -98,24 +99,40 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void buttonHomeClicked() {
+    private void buttonHomeClicked(View view) {
+        startButtonClickAnimation(view);
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
-    private void buttonBudgetplanActivity() {
+    private void buttonBudgetplanActivity(View view) {
+        startButtonClickAnimation(view);
         Intent intent = new Intent(this, Budgetplan.class);
         startActivity(intent);
     }
 
-    private void buttonAnalyseActivity() {
+    private void buttonAnalyseActivity(View view) {
+        startButtonClickAnimation(view);
         Intent intent = new Intent(this, Analyse.class);
         startActivity(intent);
     }
 
-    private void buttonHelpActivity() {
+    private void buttonHelpActivity(View view) {
+        startButtonClickAnimation(view);
         Intent intent = new Intent(this, Help.class);
         startActivity(intent);
+    }
+
+    private void startButtonClickAnimation(View view) {
+        ObjectAnimator scaleDownX = ObjectAnimator.ofFloat(view, "scaleX", 0.9f);
+        ObjectAnimator scaleDownY = ObjectAnimator.ofFloat(view, "scaleY", 0.9f);
+        scaleDownX.setDuration(300);
+        scaleDownY.setDuration(300);
+
+        AnimatorSet scaleDown = new AnimatorSet();
+        scaleDown.play(scaleDownX).with(scaleDownY);
+
+        scaleDown.start();
     }
 
     private void updateCurrentBudget(double budget) {
