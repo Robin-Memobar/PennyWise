@@ -148,9 +148,5 @@
         android:layout_marginBottom="12dp"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="parent" />
-    <Spinner
-        android:id="@+id/artSpinner">
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

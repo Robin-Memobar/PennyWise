@@ -1,5 +1,6 @@
 package com.example.pennywise;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,7 +13,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Analyse extends AppCompatActivity {
-    private TextView textViewCurrentBudget;
+    private TextView householdamount;
+    private TextView foodAmount;
+    private TextView hobbyAmount;
+    private TextView restAmount;
     private ListView listViewLastChanges;
     private BottomNavigationView bottomNavigationView;
 
@@ -20,6 +24,12 @@ public class Analyse extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.analyse);
+
+        householdamount = findViewById(R.id.householdAmount);
+        foodAmount = findViewById(R.id.foodAmount);
+        hobbyAmount = findViewById(R.id.hobbyAmount);
+        restAmount = findViewById(R.id.restAmount);
+
 
         final Button buttonHome = (Button) findViewById(R.id.navigation_home);
         buttonHome.setOnClickListener(new View.OnClickListener() {
