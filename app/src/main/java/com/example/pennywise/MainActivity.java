@@ -56,6 +56,12 @@ public class MainActivity extends AppCompatActivity {
                 buttonHelpActivity();
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
         updateCurrentBudget();
         updateLastChanges();
     }
@@ -116,11 +122,6 @@ public class MainActivity extends AppCompatActivity {
     private void buttonHelpActivity() {
         Intent intent = new Intent(this, Help.class);
         startActivity(intent);
-    }
-
-    private void updateCurrentBudget(double budget) {
-        String budgetText = String.format("Aktuelles Budget: %.2f", budget);
-        textViewCurrentBudget.setText(budgetText);
     }
 
     private String[] getLastChanges() {

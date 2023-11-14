@@ -45,11 +45,16 @@ public class Budgetplan extends AppCompatActivity {
 
     private ImageView imageViewCamera;
 
+    private Spinner artSpinner;
+    private Spinner categorySpinner;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.budgetplan);
 
+        artSpinner = findViewById(R.id.artSpinner); // Ersetze mit der tatsächlichen ID
+        categorySpinner = findViewById(R.id.categorySpinner); // Ersetze mit der tatsächlichen ID
 
         imageViewCamera = findViewById(R.id.imageView);
         imageViewCamera.setOnClickListener(new View.OnClickListener() {
@@ -96,7 +101,8 @@ public class Budgetplan extends AppCompatActivity {
         saveBudgetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveBudgetData();
+                saveBudgetData(artSpinner, categorySpinner);
+                Log.d("onClick", "Try to save with: " + artSpinner +":"+ categorySpinner);
             }
         });
 
@@ -111,7 +117,7 @@ public class Budgetplan extends AppCompatActivity {
 
     private void initializeSpinners(Spinner artSpinner, Spinner categorySpinner) {
         // Auswahlmöglichkeiten und Adapter für artSpinner
-        String[] categories = {"Wähle eine Kategorie", "Haushalt", "Freizeit", "Essen", "Sonstiges"};
+        String[] categories = {"Wähle eine Kategorie", "AusgabenHaushalt", "AusgabenFreizeit", "AusgabenEssen", "AusgabenSonstiges"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categories);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         artSpinner.setAdapter(adapter);
@@ -166,12 +172,37 @@ public class Budgetplan extends AppCompatActivity {
 
 
 
-    private void saveBudgetData() {
+    private void saveBudgetData(Spinner artSpinner, Spinner categorySpinner) {
         SharedPreferences sharedPreferences = getSharedPreferences("BudgetPrefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt("BudgetLimit", Integer.parseInt(editTextBudgetLimit.getText().toString()));
+
+        // Betrag aus dem EditText-Feld
+        int betrag = Integer.parseInt(editTextBudgetLimit.getText().toString());
+
+        // Ausgewählte Kategorie und Art aus den Spinners
+        String gewaehlteKategorie = artSpinner.getSelectedItem().toString();
+        String gewaehlteArt = categorySpinner.getSelectedItem().toString();
+
+        Log.d("Budget", "type check");
+        Log.d("Budget", gewaehlteArt.toString());
+        Log.d("Budget", gewaehlteKategorie.toString());
+
+        // Speichern des Betrags in der ausgewählten Kategorie
+        if (gewaehlteArt.equals("Budget Erhöhung")) {
+            // Erhöhung des Budgets
+            int aktuellesBudget = sharedPreferences.getInt("BudgetLimit", 0);
+            editor.putInt("BudgetLimit", aktuellesBudget + betrag);
+            Log.d("Budget", "Save");
+        } else {
+            Log.d("Budget", gewaehlteArt);
+            // Speichern unter der ausgewählten Kategorie
+            int aktuellerBetrag = sharedPreferences.getInt(gewaehlteKategorie, 0);
+            editor.putInt(gewaehlteKategorie, aktuellerBetrag + betrag);
+        }
+        Log.d("editor", "Try to save with: " + betrag);
         editor.apply();
     }
+
 
     private void loadBudgetData() {
         SharedPreferences sharedPreferences = getSharedPreferences("BudgetPrefs", MODE_PRIVATE);
